@@ -1,0 +1,32 @@
+@url = http://localhost:3000
+
+@image-id = 63060c885d1e99ca1914caeb
+
+### Sign up
+
+POST {{url}}/auth/sign-up
+Content-Type: application/json
+
+{
+    "displayName": "Trịnh Đức Khang",
+    "email": "yuurei.td@gmail.com",
+    "password": "123456"
+}
+
+### Sign in
+
+POST {{url}}/auth/sign-in
+Content-Type: application/json
+
+{
+    "email": "yuurei.td@gmail.com",
+    "password": "123456"
+}
+
+### Sign out
+
+POST {{url}}/auth/sign-out
+
+### Get image
+
+GET {{url}}/api/image/{{image-id}}

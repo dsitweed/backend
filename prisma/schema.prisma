@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  displayName   String
+  email         String   @unique
+  password      String
+  createdAt     DateTime @default(now())
+  role          Role     @default(USER)
+  uploadedImage Image[]
+}
+
+model Image {
+  id            String  @id @default(auto()) @map("_id") @db.ObjectId
+  buffer        Bytes   @db.BinData
+  contentType   String
+  uploader      Account @relation(fields: [uploaderEmail], references: [email])
+  uploaderEmail String
+}
+
+enum Role {
+  USER
+  ADMIN
+}
