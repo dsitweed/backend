@@ -3,7 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import express from "express";
 import { BACKEND_PORT, HOSTNAME } from "./constants/env.js";
-import appRouter from "./routes/app.route.js";
+import appRouter from "./routes/app.routes.js";
 
 const main = async () => {
   const app = express();

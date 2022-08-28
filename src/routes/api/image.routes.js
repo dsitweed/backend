@@ -1,6 +1,6 @@
 import { Router } from "express";
 import multer from "multer";
-import prisma from "../config/db.js";
+import { prisma } from "../../config/db.js";
 
 const upload = multer();
 

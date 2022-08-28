@@ -1,16 +1,12 @@
 import { Router } from "express";
-import userRouter from "./user.route.js";
-import imageRouter from "./image.route.js";
+import authRouter from "./auth.routes.js";
 import { deserializeAccount } from "../middlewares/auth.js";
+import apiRouter from "./api.routes.js";
 
 const appRouter = Router();
 
-const apiRouter = Router();
-
-apiRouter.use("/image", imageRouter);
-
 appRouter.use("/api", deserializeAccount, apiRouter);
 
-appRouter.use("/auth", userRouter);
+appRouter.use("/auth", authRouter);
 
 export default appRouter;

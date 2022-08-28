@@ -8,8 +8,8 @@ POST {{url}}/auth/sign-up
 Content-Type: application/json
 
 {
-    "displayName": "Trịnh Đức Khang",
-    "email": "yuurei.td@gmail.com",
+    "displayName": "Trịnh Khang",
+    "email": "yuurei@gmail.com",
     "password": "123456"
 }
 
@@ -19,13 +19,16 @@ POST {{url}}/auth/sign-in
 Content-Type: application/json
 
 {
-    "email": "yuurei.td@gmail.com",
+    "email": "khang.td194591@gmail.com",
     "password": "123456"
 }
 
 ### Sign out
 
 POST {{url}}/auth/sign-out
+
+### Get all user
+GET {{url}}/api/user?take=2&skip=1
 
 ### Get image
 

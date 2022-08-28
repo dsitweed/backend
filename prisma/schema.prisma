@@ -9,7 +9,9 @@ datasource db {
 
 model Account {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  displayName   String
+  fullName      String?
+  phone         String?
+  imageUrl      String?
   email         String   @unique
   password      String
   createdAt     DateTime @default(now())
@@ -18,11 +20,11 @@ model Account {
 }
 
 model Image {
-  id            String  @id @default(auto()) @map("_id") @db.ObjectId
-  buffer        Bytes   @db.BinData
-  contentType   String
-  uploader      Account @relation(fields: [uploaderEmail], references: [email])
-  uploaderEmail String
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  buffer      Bytes   @db.BinData
+  contentType String
+  uploader    Account @relation(fields: [uploaderId], references: [id])
+  uploaderId  String  @db.ObjectId
 }
 
 enum Role {
