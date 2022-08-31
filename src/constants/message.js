@@ -13,3 +13,5 @@ export const UNAUTHORIZED_ACCESS = "Unauthorized access";
 export const USER_NOT_FOUND = "User not found";
 
 export const SUCCESS = "Success";
+
+export const NOT_FOUND = "Not found";

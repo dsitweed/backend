@@ -8,15 +8,52 @@ datasource db {
 }
 
 model Account {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  username      String?   @unique
   fullName      String?
   phone         String?
+  address       String?
+  dateOfBirth   DateTime?
   imageUrl      String?
-  email         String   @unique
+  email         String    @unique
   password      String
-  createdAt     DateTime @default(now())
-  role          Role     @default(USER)
+  createdAt     DateTime  @default(now())
+  role          Role      @default(USER)
   uploadedImage Image[]
+  rated         Ratings[]
+}
+
+model Product {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  sold         Int?      @default(0)
+  price        Float
+  discount     Float?    @default(0)
+  description  String?
+  quantity     Int?      @default(0)
+  category     Category  @relation(fields: [categoryName], references: [name])
+  categoryName String
+  images       String[]
+  ratings      Ratings[]
+}
+
+model Ratings {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  star      Int
+  content   String
+  poster    Account @relation(fields: [posterId], references: [id])
+  posterId  String  @db.ObjectId
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @db.ObjectId
+}
+
+model Category {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  name          String     @unique
+  predecessor   Category?  @relation("tree", fields: [predecessorId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  predecessorId String?    @db.ObjectId
+  successor     Category[] @relation("tree")
+  Product       Product[]
 }
 
 model Image {

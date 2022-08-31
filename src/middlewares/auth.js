@@ -6,7 +6,8 @@ function deserializeAccount(req, res, next) {
   const token = req.cookies["token"];
   try {
     const payload = jwt.verify(token, JWT_SECRET);
-    req.accountId = payload.role;
+    console.log(payload);
+    req.accountId = payload.id;
     req.role = payload.role;
   } catch (error) {
     return res.status(403).json({ message: UNAUTHORIZED_ACCESS, error });
